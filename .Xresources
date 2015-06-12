@@ -1,77 +1,75 @@
-URxvt*.font: xft:Bitstream Vera Sans Mono:pixelsize=11
-!URxvt*.reverseVideo: true
-URxvt*.scrollBar: false
-Xcursor.theme: Vanilla-DMZ-AA
-Xcursor.size: 22
-xpdf*enableFreetype: yes
-xpdf*antialias: yes
-xpdf*foreground: black
-xpdf*background: white
-xpdf*urlCommand: /usr/bin/midori %s
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: 0
+Xft.rgba: 0
+Xft.autohint: 0
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
 
-! Black
-*color0:   #303030
-*color8:   #5F5F5F
+URxvt.font: xft:Terminus:style=Regular:pixelsize=16
+URxvt.boldFont: xft:Terminus:style=Underline:pixelsize=16
+URxvt.saveLines: 65535
+URxvt*fading: 30
+URxvt.letterSpace: 0
+URxvt.scrollBar: false
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt*transparent: true
+URxvt*shading: 30
 
-! Red
-*color1:   #c03000
-*color9:   #FF3A78
+!Theme Sixteen
+URxvt*depth: 32
+URxvt*background: [80]#111111
+URxvt*foreground: rgb:dd/dd/dd
+URxvt*color0:     rgb:00/00/00
+URxvt*color1:     rgb:9e/18/28
+URxvt*color2:     rgb:ae/ce/92
+URxvt*color3:     rgb:96/8a/38
+URxvt*color4:     rgb:41/41/71
+URxvt*color5:     rgb:96/3c/59
+URxvt*color6:     rgb:41/81/79
+URxvt*color7:     rgb:be/be/be
+URxvt*color8:     rgb:66/66/66
+URxvt*color9:     rgb:cf/61/71
+URxvt*color10:    rgb:c5/f7/79
+URxvt*color11:    rgb:ff/f7/96
+URxvt*color12:    rgb:41/86/be
+URxvt*color13:    rgb:cf/9e/be
+URxvt*color14:    rgb:71/be/be
+URxvt*color15:    rgb:ff/ff/ff
 
-! Green
-*color2:   #b1d631
-*color10:  #A6CD07
+/*
+! Hybrid Terminal Colours. Uses the palette from Tomorrow-Night:
+! https://github.com/chriskempson/tomorrow-theme/blob/master/vim/colors/Tomorrow-Night.vim
+! vim: ft=xdefaults
+ 
+*background: #111111
+*foreground: #CCCCCC
+! black
+*color0: #282A2E
+*color8: #373B41
+! red
+*color1: #A54242
+*color9: #CC6666
+! green
+*color2: #8C9440
+*color10: #B5BD68
+! yellow
+*color3: #DE935F
+*color11: #F0C674
+! blue
+*color4: #5F819D
+*color12: #81A2BE
+! magenta
+*color5: #85678F
+*color13: #B294BB
+! cyan
+*color6: #5E8D87
+*color14: #8ABEB7
+! white
+*color7: #707880
+*color15: #C5C8C6 
 
-! Yellow
-*color3:   #fecf35
-*color11:  #B5C865
+*/
 
-! Blue
-*color4:   #426870
-*color12:  #4A7781
-
-! Magenta
-*color5:   #6D506D
-*color13:  #FF3B77
-
-! Cyan
-*color6:   #4bb5c1
-*color14:  #4bb5c1
-
-! White
-*color7:   #e2e2e5
-*color15:  #e2e2e5
-
-! vim: et sw=2 syn=xdefaults
-!============================
-! colors ripped from rezza
-!  http://metawire.org/~rezza/index.php
-!============================
-
-*foreground:     rgb:dd/dd/dd
-*background:     rgb:22/22/22
-!black
-*color0:         rgb:19/19/19
-*color8:         rgb:25/25/25
-!red
-*color1:         rgb:80/32/32
-*color9:         rgb:98/2b/2b
-!green
-*color2:         rgb:5b/76/2f
-*color10:        rgb:89/b8/3f
-!brown/yellow
-*color3:         rgb:aa/99/43
-*color11:        rgb:ef/ef/60
-!blue
-*color4:         rgb:32/4c/80
-*color12:        rgb:2b/4f/98
-!magenta
-*color5:         rgb:70/6c/9a
-*color13:        rgb:82/6a/b1
-!cyan
-*color6:         rgb:92/b1/9e
-*color14:        rgb:a1/cd/cd
-!white
-*color7:         rgb:ff/ff/ff
-*color15:        rgb:dd/dd/dd
-
-! vim: ai:si:et:ts=4:sw=4:ft=xdefaults:
