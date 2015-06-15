@@ -1,8 +1,16 @@
-#PROMPT='%K{blue}%n@%M%k '
 PROMPT=''
 PROMPT=$PROMPT'%B%F{green}%~%(4~|
 |)%f%b '
 PROMPT=$PROMPT'%(?.%#.%F{red}%? %#%f) '
+
+# Report any time longer than 10s
+REPORTTIME=10
+
+# bind C-x C-e to edit command line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
 
 export AM=am004872
 export PATH=$PATH:~/.bin
@@ -120,5 +128,34 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 function gitroot() {
     D="$(git rev-parse --show-toplevel)" && cd "$D"
+}
+
+function title() {
+  # escape '%' chars in $1, make nonprintables visible
+  a=${(V)1//\%/\%\%}
+
+  # Truncate command, and join lines.
+  a=$(print -Pn "%40>...>$a" | tr -d "\n")
+
+  case $TERM in
+  screen)
+    print -Pn "\e]2;$a @ $2\a" # plain xterm title
+    print -Pn "\ek$a\e\\"      # screen title (in ^A")
+    print -Pn "\e_$2   \e\\"   # screen location
+    ;;
+  xterm*|rxvt*)
+    print -Pn "\e]2;$a @ $2\a" # plain xterm title
+    ;;
+  esac
+}
+
+# precmd is called just before the prompt is printed
+function precmd() {
+  title "zsh" "%m(%75<...<%~)"
+}
+
+# preexec is called just before any command line is executed
+function preexec() {
+  title "$1" "%m(%75<...<%~)"
 }
 
