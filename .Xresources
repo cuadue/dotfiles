@@ -11,12 +11,11 @@ URxvt.boldFont: xft:Terminus:style=Underline:pixelsize=16
 URxvt.saveLines: 65535
 URxvt*fading: 30
 URxvt.letterSpace: 0
-URxvt.scrollBar: false
+URxvt.scrollBar: true
 URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 URxvt*scrollTtyKeypress: true
-URxvt*transparent: true
-URxvt*shading: 30
+URxvt*transparent: false
 
 !Theme Sixteen
 URxvt*depth: 32
