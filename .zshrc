@@ -4,13 +4,8 @@ PROMPT=$PROMPT'%B%F{green}%~%(4~|
 |)%f%b '
 PROMPT=$PROMPT'%(?.%#.%F{red}%? %#%f) '
 
-export AM=am004872
 export PATH=$PATH:~/.bin
 export EDITOR=vim
-export SWEEPLOOP_SRC_DIR=/home/wes/sweep_loop/sweeploop_cpu1/src
-export DESKTOP_QMAKE=/opt/Qt5.2.0/5.2.0/gcc_64/bin/qmake
-export ZYNQ_QMAKE=/opt/Qt/qt-zynq-5.2.0/bin/qmake
-export SWEEPLOOP_BUILD=/home/wes/sweep_loop/sweeploop_cpu1/Debug
 
 setopt AUTO_CD EXTENDED_HISTORY IGNORE_EOF
 
