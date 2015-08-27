@@ -12,7 +12,6 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
-export AM=am004872
 export PATH=$PATH:~/.bin
 export EDITOR=vim
 
