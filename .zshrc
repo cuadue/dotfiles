@@ -15,12 +15,13 @@ bindkey '^x^e' edit-command-line
 export AM=am004872
 export PATH=$PATH:~/.bin
 export EDITOR=vim
-export SWEEPLOOP_SRC_DIR=/home/wes/sweep_loop/sweeploop_cpu1/src
-export DESKTOP_QMAKE=/opt/Qt5.2.0/5.2.0/gcc_64/bin/qmake
-export ZYNQ_QMAKE=/opt/Qt/qt-zynq-5.2.0/bin/qmake
-export SWEEPLOOP_BUILD=/home/wes/sweep_loop/sweeploop_cpu1/Debug
 
 setopt AUTO_CD EXTENDED_HISTORY IGNORE_EOF
+
+if which colormake &>/dev/null
+then alias make="colormake -j$(nproc)"
+else alias make="make -j$(nproc)"
+fi
 
 alias ls='ls --color=auto -F -h'
 alias ll='ls -AlF'
@@ -41,9 +42,13 @@ alias gg='git grep -i'
 alias miniterm='miniterm.py --lf -q -b 115200'
 
 e() {
+    GITROOT=$(git rev-parse --show-toplevel)
+
     if [ -d "$1" ]
     then cd "$1"
-    else vim "$@"
+    elif [ ! -e "$1" ] && [ -n "$GITROOT" ] && [ -e "$GITROOT/$1" ]
+    then "$EDITOR" "$GITROOT/$1"
+    else "$EDITOR" "$@"
     fi
 }
 
@@ -85,15 +90,6 @@ c() {
     fi
 }
 
-precmd() { echo -en "\033]0;zsh (${PWD/#$HOME/~})\007" }
-preexec() {}
-#preexec() { echo -en "\033]0;" ${(q)$1} "(${PWD/#$HOME/~})\007" }
-
-# Set up the prompt
-# autoload -Uz promptinit
-# promptinit
-# prompt adam1
-
 setopt histignorealldups sharehistory
 
 # Use emacs keybindings even if our EDITOR is set to vi
@@ -127,7 +123,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 function gitroot() {
-    D="$(git rev-parse --show-toplevel)" && cd "$D"
+    D="$(git rev-parse --show-toplevel)" && pushd "$D"
 }
 
 function title() {
@@ -135,27 +131,27 @@ function title() {
   a=${(V)1//\%/\%\%}
 
   # Truncate command, and join lines.
-  a=$(print -Pn "%40>...>$a" | tr -d "\n")
+  a=$(print -Pn "%75>...>$a" | tr -d "\n")
 
   case $TERM in
   screen)
-    print -Pn "\e]2;$a @ $2\a" # plain xterm title
+    print -Pn "\e]2;$a $2\a" # plain xterm title
     print -Pn "\ek$a\e\\"      # screen title (in ^A")
     print -Pn "\e_$2   \e\\"   # screen location
     ;;
   xterm*|rxvt*)
-    print -Pn "\e]2;$a @ $2\a" # plain xterm title
+    print -Pn "\e]2;$a $2\a" # plain xterm title
     ;;
   esac
 }
 
 # precmd is called just before the prompt is printed
 function precmd() {
-  title "zsh" "%m(%75<...<%~)"
+  title "zsh" "(%75<...<%~)"
 }
 
 # preexec is called just before any command line is executed
 function preexec() {
-  title "$1" "%m(%75<...<%~)"
+  title "$1" "(%75<...<%~)"
 }
 
